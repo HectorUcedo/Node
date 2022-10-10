@@ -3,6 +3,7 @@ console.log('Inicio de programa'); // 1
 
 /**
  * Los setTimeout no es bloqueante
+ * Establece los callback en una pila de ejecución
  */
 
 setTimeout(() => {
