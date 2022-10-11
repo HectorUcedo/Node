@@ -28,7 +28,7 @@ const salarios =[
 const getEmpleado = (id, callback) => {
     
     //* la promesa internamente ejecuta un callback, el callback tiene 2 argumentos que se le envía
-    //const promesa = new Promise( (resolve, reject) => {
+
     return promesa = new Promise( (resolve, reject) => {
         
         const empleado = empleados.find( e => e.id === id )?.nombre;
@@ -39,17 +39,7 @@ const getEmpleado = (id, callback) => {
             : reject( `No existe empleado con id ${ id }` );
         });
 
-        /**
-        if ( empleado ) {
-            resolve( empleado );
-        } else {
-            reject( `No existe empleado con id ${ id }` );
-        }
-        
 
-    });
-    */
-    //return promesa;
 }
 
 const getSalario = (id, callback) => {
@@ -64,8 +54,8 @@ const getSalario = (id, callback) => {
     })
 }
 
-const id = 3;
-// Refactorización
+const id = 1;
+
 // getEmpleado(id)
 //     .then ( empleado => console.log( empleado ) )
 //     .catch( err => console.log(err));
@@ -74,16 +64,13 @@ const id = 3;
 //     .then ( salario => console.log( salario ) )
 //     .catch( err => console.log(err));
 
+let nombre; 
 
-/** Promesas Hell jejeje */
+// Promesas en cadenas
 getEmpleado(id)
     .then( empleado => {
-        getSalario( id )
-            .then( salario => {
-
-                console.log('El empleado:', empleado, 'tiene un salario de:', salario);
-
-            })
-            .catch( err => console.log(err))
+        nombre = empleado;
+        return getSalario( id )
     })
-    .catch( err => console.log(err))
+    .then( salario => console.log( 'El empleado:', nombre, 'tiene un salario de:', salario ))
+    .catch( err => console.log( err ) );
