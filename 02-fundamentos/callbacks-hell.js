@@ -34,7 +34,7 @@ const salarios =[
 
 const getEmpleado = (id, callback) => {
 
-    const empleado = empleados.find( e => e.id === id );
+    const empleado = empleados.find( e => e.id === id )?.nombre;
 
     if ( empleado ){
         // Se agregar el nulo para casos que no haya error. Se acostumbra que si no hay error mandar "null"
@@ -43,20 +43,45 @@ const getEmpleado = (id, callback) => {
         callback( `Empleado con id ${ id } no existe` );
     }
 
+};
+
+const getSalario = (id, callback) => {
+
+                                                    //* ? = Nullcheck operator
+    const salario = salarios.find( s => s.id === id )?.salario;
+
+    if ( salario ){
+        callback( null, salario);
+    } else {
+        callback( `No existe salario con id ${ id }` );
+    }
+
 }
 
+const id = 3
 
-getEmpleado( 10, ( err, empleado ) => {
+
+getEmpleado( id, ( err, empleado ) => {
 
     if ( err ) {
         console.log('ERROR!');
         return console.log(err);
     }
 
-    console.log('Empleado existe!');
-    console.log(empleado);
 
-})
+    getSalario(id, ( err, salario) => {
+
+        if( err ){
+            return console.log( err );
+        }
+    
+        console.log('Empleado:', empleado, 'tiene un salario de:', salario);
+    
+    })
+    
+
+});
+
 
 
 
