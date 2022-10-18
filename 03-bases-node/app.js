@@ -3,33 +3,12 @@
 
 //const { number, argv, option } = require('yargs');
 const { fug_crearArchivo } = require('./helpers/multiplicar'); // Desestructuración
-const argv = require('yargs')
-                .option('b',{
-                    alias: 'base',
-                    type: 'number',
-                    demandOption: true
+const argv = require('./config/yargs');
 
-                })
-                .option('l',{
-                    alias: 'listar',
-                    type: 'boolean',
-                    demandOption: true,
-                    default: false
-                })   
-                //* https://yargs.js.org/docs/#api-reference-checkfn-globaltrue
-                .check( (argv, option) => {
-
-                    if( isNaN( argv.b ) ){
-                        throw 'La base tiene que ser un núnmero'
-                    }
-                    return true;
-                })
-                .argv;
+require('colors');
 
 console.clear();
 
-console.log( argv );
-
 fug_crearArchivo( argv.b, argv.listar)
-    .then(nombreArchivo => console.log(nombreArchivo, 'creado') )
+    .then(nombreArchivo => console.log(nombreArchivo.blue, 'creado') )
     .catch( err => console.log(err) );
