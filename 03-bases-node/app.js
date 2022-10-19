@@ -9,6 +9,6 @@ require('colors');
 
 console.clear();
 
-fug_crearArchivo( argv.b, argv.listar)
+fug_crearArchivo( argv.b, argv.listar, argv.hasta)
     .then(nombreArchivo => console.log(nombreArchivo.blue, 'creado') )
     .catch( err => console.log(err) );
