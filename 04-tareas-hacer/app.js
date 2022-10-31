@@ -15,11 +15,11 @@ const main = async() => {
 
     const tareasDB =leerDB();
 
-    if ( tareasDB ){
-        // Establecer las tareas
+    if ( tareasDB ){ // cargar tareas
+        tareas.cargarTareasFormArray( tareasDB );
     }
 
-    await pausa();
+    //await pausa();
 
 
     do {
@@ -29,21 +29,26 @@ const main = async() => {
 
         switch (opt) {
             case '1':
-                // crear opción
-                const desc = await leerInput('Descripción:');
-                //console.log( desc );         
+                const desc = await leerInput('Descripción:');      
                 tareas.crearTarea( desc );       
             break;
 
-            case '2':
-                //console.log( tareas._listado );                
-                console.log( tareas.listadoArr );                
+            case '2':               
+                tareas.listadoCompleto();             
+            break;
+
+            case '3': //Listar completadas
+                tareas.listarPendientesCompletadas(true);             
+            break;
+            
+            case '4': // Listar pendientes
+                tareas.listarPendientesCompletadas(false);             
             break;
 
         }
 
 
-        //guardarDB( tareas.listadoArr );
+        guardarDB( tareas.listadoArr );
 
         await pausa();
     

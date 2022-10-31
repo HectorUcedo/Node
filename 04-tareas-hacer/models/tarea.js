@@ -11,7 +11,7 @@ class Tarea {
 
         this.id = uuidv4();
         this.desc = desc;
-        this.completadoEn = null; //! redundante
+        this.completadoEn; //! redundante
 
     }
 
