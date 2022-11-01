@@ -7,7 +7,9 @@ const Tarea = require("./tarea");
 
 class Tareas {
 
-    _listado = {};
+    _listado = {
+
+    };
 
     get listadoArr() {
 
@@ -25,6 +27,14 @@ class Tareas {
     
     constructor () {
         this._listado = {}; // Solo inicializamos, en un objeto vacío
+    }
+
+    borrarTarea( id = '' ) {
+
+        if ( this._listado[id] ) {
+            delete this._listado[id];
+        }
+
     }
 
     cargarTareasFormArray( tareas = [] ) {
